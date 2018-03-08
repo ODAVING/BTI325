@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1>{{title}}<a href="/employees/add" class="btn btn-success pull-right" style="margin-top:5px;">Add New Employee</a></h1>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class= "table-responsive">
+            <thead>
+                <tr>
+                    <th>Employee&nbsp;Num&emsp;&ensp;</th>
+                    <th>Full&nbsp;Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Manager&nbsp;ID&emsp;&ensp;</th>
+                    <th>Status&emsp;&ensp;</th>
+                    <th>Department&emsp;&ensp;</th>
+                    <th>Hired&nbsp;On</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr class="bordered">
+                    <td>
+                    {{employeeNum}}
+                    </td>
+                    
+                    <td>
+                        <a href="/employee/{{employeeNum}}">{{firstName}} {{last_name}}&emsp;</a>
+                    </td>
+
+                    <td>
+                        <a href="mailto:{{email}}">{{email}}</a>
+                    </td>
+
+                    <td>
+                        {{addressStreet}} {{addresCity}} {{addressState}} {{addressPostal}}  
+                    </td>
+
+                    <td>
+                        &emsp;&ensp;
+                        <a href="/employees?manager={{employeeManagerNum}}">{{employeeManagerNum}}</a>
+                    </td>
+
+                    <td>
+                        <a href="/employees?status={{status}}">{{status}}</a>
+                    </td>
+                    
+                    <td>
+                        <a href="/employees?department={{department}}">{{department}}</a>
+                    </td>
+
+                    <td>
+                        {{hireDate}}
+                    </td>
+
+                    <td>
+                        <a class="btn btn-danger" href="/employee/delete/{{employeeNum}}">Remove</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

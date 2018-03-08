@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Login</h1>
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">   
+      <div class="well">
+        {{#if errorMessage}}
+            <div class="alert alert-danger">
+                <strong>Error:</strong> {{errorMessage}}
+            </div>
+        {{/if}}
+        <form action="/login" method="POST">
+            <div class="row">
+                <div class="col-md-12">
+                <div class="form-group">
+                    <input class="form-control" id="user" name="user" type="text" placeholder="Username" required value="" />
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                <div class="form-group">
+                    <input class="form-control" id="password" name="password" type="password" placeholder="Password" required />
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                <button type="submit" class="btn btn-success pull-right">Login</button><br/><br />
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

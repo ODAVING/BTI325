@@ -1,0 +1,131 @@
+
+<div class="row">
+    <section class="main col-md-12">
+        <article>
+            <h2>Sina Lahsaee - Developer</h2>
+            <p>Hello,</p>
+            <p>My name is Sina Lahsaee, I am a 2nd year Software Developer at Seneca College. Before choosing this career path,</p>
+            <p>I studied at Ryerson University; got my Bachelor's of Science in the field of Biology. Afterwards I got into </p>
+            <p>RUSM - Ross University School of Medicine, where I spent one year studying Medicine. Medicine was a tough field,</p>
+            <p>and as much as I enjoyed the subjects, it wasn't meant for me. Thus, I decided to follow my childhood dreams of</p>
+            <p>building applications - web-based or mobile based - to help improve people's everyday life needs. Please stay tuned </p>
+            <p>for updates.</p>
+            <p>            </p>
+            <p>Regards,</p>
+            <p>Sina Lahsaee</p>
+        </article>
+    </section>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h3>Leave a Comment</h3>
+        <div class="well">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="/about/addComment" method="POST">
+		                <div class="row"> 
+		                    <div class="col-md-6">
+		                        <input type="text" class="form-control" placeholder="Name" name="authorName" />
+		                        <br/>
+		                    </div>
+		                    <div class="col-md-6">
+		                        <input type="email" class="form-control" placeholder="Email" name="authorEmail"/>
+		                        <br/>
+		                    </div>
+		                </div>
+		                <div class="row">
+		                    <div class="col-md-12">
+		                        <input type="text" class="form-control" placeholder="Subject" name="subject"/>
+		                        <br/>
+		                    </div>
+		                </div>
+		                <div class="row">
+		                    <div class="col-md-12">
+		                    <textarea class="form-control" rows="8" placeholder="Comment" name="commentText"></textarea>
+		                    <br/>
+		                    </div>
+		                </div>
+		                <div class="row">
+		                    <div class="col-md-2 col-md-offset-10">
+		                        <button type="submit"class="btn btn-primary form-control">Comment</button>
+		                    </div>		
+		                </div>
+		            </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#if data}}
+<div class="row">
+    <div class="col-md-12">
+        <h3>All Comments</h3>
+        <hr />
+    </div>
+</div>
+{{/if}}
+
+{{#each data}}
+<div class="row">
+    <div class="col-md-12">
+        <div class="well">
+            <div class="row">
+                <div class="col-md-12">
+                     {{commentText}}<br /><br /> 
+		                Posted on: {{postedDate}} <a href="mailto:{{authorEmail}}">{{authorName}}</a>
+                </div>
+            </div>
+            {{#each replies}}
+            <div class="row">
+                <div class="well"> 
+		            {{commentText}}<br /><br />
+		            Posted on: {{repliedDate}} <a href="mailto:{{authorEmail}}">{{authorName}}</a> 
+		        </div>
+            </div>
+            {{/each}}
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-primary btn-sm pull-right" data-toggle="collapse" data-target="#reply-{{_id}}" aria-expanded="false">Reply</button>
+                </div>
+            </div>
+        </div>
+            
+        <div class="collapse" id="reply-{{_id}}">
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form action="/about/addReply" method="POST">
+		                    <div class="well">
+		                        <div class="row">
+		                            <div class="col-md-6">
+		                                <input type="text" class="form-control" placeholder="Name" name="authorName" />
+		                                <br/>
+		                            </div>
+		                            <div class="col-md-6">
+		                                <input type="email" class="form-control" placeholder="Email" name="authorEmail" />
+		                                <br/>
+		                            </div>
+		                        </div>
+		                        <div class="row">
+		                            <div class="col-md-12">
+		                                <textarea class="form-control" rows="8" placeholder="Comment" name="commentText"></textarea>
+		                                <br />
+		                            </div>
+		                        </div>
+		                        <div class="row">
+		                            <div class="col-md-2 col-md-offset-10">
+		                                <input type="hidden" value="{{_id}}" name="comment_id" />
+		                                <button type="submit" class="btn btn-primary form-control">Reply</button>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{/each}}
